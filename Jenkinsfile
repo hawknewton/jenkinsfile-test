@@ -1,7 +1,15 @@
-node {
-    stage('Checkout') {
-        git poll: true, url: 'git@github.com:hawknewton/jenkinsfile-test.git'
-        echo "Current branch is ${env.GIT_BRANCH}"
-        print "Current branch is ${BRANCH_NAME}"
-    }
+if(BRANCH_NAME == "master") {
+  node {
+      stage('Checkout') {
+          git poll: true, url: 'git@github.com:hawknewton/jenkinsfile-test.git'
+          print "MASTER!"
+      }
+  }
+} else {
+  node {
+      stage('Checkout') {
+          git poll: true, url: 'git@github.com:hawknewton/jenkinsfile-test.git'
+          print "OTHER!"
+      }
+  }
 }
